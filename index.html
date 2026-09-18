@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>LUMÉA | Modern Botanical Skincare</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #6b705c;
+            --accent: #a5a58d;
+            --bg-cream: #fdfcf8;
+            --bg-soft: #f5f5f5;
+            --text-main: #2c2c2c;
+            --text-muted: #666666;
+            --white: #ffffff;
+            --border: #e5e5e5;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --container-width: 1400px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-cream);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .serif {
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+            line-height: 1.2;
+        }
+
+        ul { list-style: none; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); cursor: pointer; }
+        button { cursor: pointer; border: none; background: none; font-family: inherit; transition: var(--transition); }
+        img { max-width: 100%; display: block; object-fit: cover; }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 0 20px; }
+        }
+
+        /* --- Components --- */
+        .btn {
+            display: inline-block;
+            padding: 16px 36px;
+            background: var(--primary);
+            color: var(--white);
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 500;
+            border: 1px solid var(--primary);
+        }
+
+        .btn:hover {
+            background: transparent;
+            color: var(--primary);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .section-padding { padding: 120px 0; }
+        @media (max-width: 768px) { .section-padding { padding: 80px 0; } }
+
+        /* --- Header & Nav --- */
+        .announcement-bar {
+            background: var(--primary);
+            color: var(--white);
+            text-align: center;
+            padding: 10px 0;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 500;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(253, 252, 248, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 90px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            font-weight: 500;
+            opacity: 0.8;
+        }
+
+        .nav-links a:hover { opacity: 1; }
+
+        .logo {
+            font-size: 32px;
+            letter-spacing: 6px;
+            font-weight: 500;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .cart-icon-wrapper {
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background: var(--primary);
+            color: white;
+            font-size: 10px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-menu-toggle { display: none; }
+
+        @media (max-width: 1024px) {
+            .nav-links { display: none; }
+            .mobile-menu-toggle { display: block; font-size: 20px; }
+            .logo { position: static; transform: none; }
+        }
+
+        /* --- Hero --- */
+        .hero {
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            width: 50%;
+            z-index: 2;
+            padding-right: 50px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.2s;
+        }
+
+        .hero-img {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 55%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1598440499115-ff36b074d722?auto=format&fit=crop&q=80&w=2000') center/cover no-repeat;
+        }
+
+        .hero h1 {
+            font-size: 72px;
+            margin-bottom: 25px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            max-width: 450px;
+        }
+
+        @media (max-width: 768px) {
+            .hero { height: 80vh; flex-direction: column; text-align: center; padding-top: 60px; }
+            .hero-content { width: 100%; padding-right: 0; }
+            .hero-img { position: relative; width: 100%; height: 400px; margin-top: 40px; }
+            .hero h1 { font-size: 48px; }
+        }
+
+        /* --- Product Grid --- */
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 { font-size: 42px; margin-bottom: 15px; }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        @media (max-width: 1024px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 500px) { .product-grid { grid-template-columns: 1fr; } }
+
+        .product-card {
+            position: relative;
+            background: var(--white);
+            padding-bottom: 20px;
+            transition: var(--transition);
+        }
+
+        .product-card:hover { transform: translateY(-5px); }
+
+        .product-image {
+            aspect-ratio: 4/5;
+            overflow: hidden;
+            background: var(--bg-soft);
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .product-card:hover .product-image img { transform: scale(1.05); }
+
+        .quick-add {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: var(--primary);
+            color: var(--white);
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0;
+            transform: translateY(100%);
+            transition: var(--transition);
+        }
+
+        .product-card:hover .quick-add {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .product-info {
+            padding: 0 10px;
+            text-align: center;
+        }
+
+        .product-name {
+            font-size: 18px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .product-price {
+            font-size: 15px;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .product-rating {
+            font-size: 12px;
+            color: #d4af37;
+            margin-bottom: 5px;
+        }
+
+        /* --- Split Section --- */
+        .split-section {
+            display: flex;
+            align-items: center;
+            background: var(--bg-soft);
+        }
+
+        .split-content {
+            flex: 1;
+            padding: 100px;
+        }
+
+        .split-image {
+            flex: 1;
+            height: 700px;
+        }
+
+        .split-content h2 { font-size: 48px; margin-bottom: 30px; }
+        .split-content p { font-size: 18px; color: var(--text-muted); margin-bottom: 40px; }
+
+        @media (max-width: 1024px) {
+            .split-section { flex-direction: column; }
+            .split-content { padding: 60px 20px; text-align: center; }
+            .split-image { width: 100%; height: 400px; }
+        }
+
+        /* --- Ingredients --- */
+        .ingredient-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .ingredient-card {
+            background: var(--white);
+            padding: 40px;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .ingredient-card:hover { background: var(--primary); color: var(--white); }
+        .ingredient-card h3 { font-size: 24px; margin-bottom: 15px; }
+        .ingredient-card p { font-size: 14px; opacity: 0.8; }
+
+        @media (max-width: 768px) { .ingredient-grid { grid-template-columns: repeat(2, 1fr); } }
+
+        /* --- Journal --- */
+        .journal-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .journal-card {
+            cursor: pointer;
+        }
+
+        .journal-img {
+            aspect-ratio: 16/10;
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+
+        .journal-card h3 { font-size: 22px; margin-bottom: 15px; }
+        .journal-card p { font-size: 15px; color: var(--text-muted); }
+
+        @media (max-width: 768px) { .journal-grid { grid-template-columns: 1fr; } }
+
+        /* --- Footer --- */
+        footer {
+            background: var(--primary);
+            color: var(--white);
+            padding: 80px 0 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 60px;
+            margin-bottom: 80px;
+        }
+
+        .footer-logo { font-size: 28px; letter-spacing: 4px; margin-bottom: 30px; }
+        .footer-col h4 { font-family: 'Inter', sans-serif; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px; color: rgba(255,255,255,0.5); }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col ul li a { font-size: 14px; color: rgba(255,255,255,0.8); }
+        .footer-col ul li a:hover { color: var(--white); }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0;
+            margin-top: 20px;
+        }
+
+        .newsletter-form input {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 15px;
+            color: white;
+            flex: 1;
+            font-family: inherit;
+        }
+
+        .newsletter-form button {
+            background: var(--white);
+            color: var(--primary);
+            padding: 0 25px;
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: rgba(255,255,255,0.4);
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+        }
+
+        /* --- Cart Drawer --- */
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            right: -450px;
+            width: 450px;
+            height: 100%;
+            background: var(--white);
+            z-index: 2001;
+            transition: var(--transition);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media (max-width: 500px) { .cart-drawer { width: 100%; right: -100%; } }
+
+        .cart-active .cart-overlay { opacity: 1; visibility: visible; }
+        .cart-active .cart-drawer { right: 0; }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .cart-items { flex: 1; overflow-y: auto; }
+
+        .cart-item {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cart-item-img { width: 80px; height: 100px; background: var(--bg-soft); }
+        .cart-item-info { flex: 1; }
+        .cart-item-info h4 { font-family: 'Inter', sans-serif; font-size: 15px; margin-bottom: 5px; }
+        .cart-item-price { font-size: 14px; color: var(--text-muted); }
+
+        .cart-item-qty {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .qty-btn {
+            width: 24px;
+            height: 24px;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .cart-footer {
+            padding-top: 30px;
+            border-top: 1px solid var(--border);
+        }
+
+        .cart-subtotal {
+            display: flex;
+            justify-content: space-between;
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+
+        /* --- Shop Page Specific --- */
+        .shop-layout {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 60px;
+        }
+
+        .shop-sidebar h4 { font-family: 'Inter', sans-serif; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 20px; margin-top: 40px; }
+        .filter-list li { margin-bottom: 10px; font-size: 14px; color: var(--text-muted); cursor: pointer; }
+        .filter-list li:hover, .filter-list li.active { color: var(--primary); font-weight: 500; }
+
+        @media (max-width: 1024px) {
+            .shop-layout { grid-template-columns: 1fr; }
+            .shop-sidebar { display: none; }
+        }
+
+        /* --- Product Detail Page --- */
+        .product-detail-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 80px;
+        }
+
+        .product-gallery {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .product-main-info h1 { font-size: 48px; margin-bottom: 15px; }
+        .product-main-info .price { font-size: 24px; margin-bottom: 30px; display: block; }
+        .product-description { font-size: 16px; color: var(--text-muted); margin-bottom: 40px; }
+
+        .accordion { border-top: 1px solid var(--border); margin-top: 40px; }
+        .accordion-item { border-bottom: 1px solid var(--border); }
+        .accordion-header {
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: var(--transition);
+            font-size: 14px;
+            color: var(--text-muted);
+            padding-bottom: 0;
+        }
+        .accordion-item.active .accordion-content { max-height: 200px; padding-bottom: 20px; }
+
+        @media (max-width: 768px) {
+            .product-detail-grid { grid-template-columns: 1fr; gap: 40px; }
+        }
+
+        /* --- About Page --- */
+        .about-hero {
+            height: 60vh;
+            background: url('https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&q=80&w=2000') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        .about-hero h1 { font-size: 64px; }
+
+        /* --- Animations --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .page-section { display: none; }
+        .page-section.active { display: block; animation: fadeInUp 0.6s ease-out; }
+
+        /* --- Utility --- */
+        .hidden { display: none; }
+        .text-center { text-align: center; }
+
+        /* --- Success Modal --- */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--primary);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 4px;
+            z-index: 3000;
+            transition: var(--transition);
+        }
+        .toast.show { transform: translateX(-50%) translateY(0); }
+
+    </style>
+</head>
+<body>
+
+    <div class="announcement-bar">
+        Complimentary shipping on orders over $75
+    </div>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="mobile-menu-toggle">☰</div>
+                <ul class="nav-links">
+                    <li><a onclick="showPage('shop')">Shop</a></li>
+                    <li><a onclick="showPage('about')">Our Story</a></li>
+                    <li><a href="#">Journal</a></li>
+                </ul>
+                <a onclick="showPage('home')" class="logo">LUMÉA</a>
+                <div class="nav-actions">
+                    <a href="#"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></a>
+                    <a onclick="showPage('contact')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></a>
+                    <a onclick="toggleCart()" class="cart-icon-wrapper">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                        <span class="cart-count" id="cart-count">0</span>
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HOME PAGE -->
+        <section id="home" class="page-section active">
+            <div class="hero">
+                <div class="container">
+                    <div class="hero-content">
+                        <h1>SKINCARE, REFINED BY NATURE.</h1>
+                        <p>Botanical formulas. Modern science. Effortless rituals. Discover the balance your skin has been waiting for.</p>
+                        <a onclick="showPage('shop')" class="btn">Explore the Collection</a>
+                    </div>
+                </div>
+                <div class="hero-img"></div>
+            </div>
+
+            <section class="section-padding">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>The Essentials</h2>
+                        <p>Our best-selling formulas for radiant, healthy skin.</p>
+                    </div>
+                    <div class="product-grid" id="featured-products">
+                        <!-- JS injected -->
+                    </div>
+                </div>
+            </section>
+
+            <section class="split-section">
+                <div class="split-image" style="background: url('https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?auto=format&fit=crop&q=80&w=1200') center/cover;"></div>
+                <div class="split-content">
+                    <h4 class="serif" style="font-style: italic; margin-bottom: 10px;">Our Philosophy</h4>
+                    <h2>Where botanical intelligence meets modern skincare.</h2>
+                    <p>We believe that nature holds the key to true skin health. By pairing potent plant extracts with clinically proven actives, we create high-performance skincare that respects your skin's natural barrier.</p>
+                    <a onclick="showPage('about')" class="btn btn-outline">Our Story</a>
+                </div>
+            </section>
+
+            <section class="section-padding">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Key Ingredients</h2>
+                        <p>Pure, potent, and purposefully selected.</p>
+                    </div>
+                    <div class="ingredient-grid">
+                        <div class="ingredient-card">
+                            <h3>Niacinamide</h3>
+                            <p>Vitamin B3 to refine texture and minimize pores.</p>
+                        </div>
+                        <div class="ingredient-card">
+                            <h3>Bakuchiol</h3>
+                            <p>A gentle, plant-derived alternative to retinol.</p>
+                        </div>
+                        <div class="ingredient-card">
+                            <h3>Hyaluronic Acid</h3>
+                            <p>Multi-molecular weights for deep hydration.</p>
+                        </div>
+                        <div class="ingredient-card">
+                            <h3>Vitamin C</h3>
+                            <p>Stabilized antioxidants for a brighter complexion.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-padding" style="background: var(--bg-soft);">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>From the Journal</h2>
+                    </div>
+                    <div class="journal-grid">
+                        <div class="journal-card">
+                            <div class="journal-img"><img src="https://images.unsplash.com/photo-1590439471364-192aa70c0b53?auto=format&fit=crop&q=80&w=800" alt="Journal"></div>
+                            <h3>The Art of a Simpler Skincare Routine</h3>
+                            <p>Why doing less often leads to better results for your skin barrier...</p>
+                        </div>
+                        <div class="journal-card">
+                            <div class="journal-img"><img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&q=80&w=800" alt="Journal"></div>
+                            <h3>Why Barrier Care Matters</h3>
+                            <p>Understanding the vital role of your acid mantle in long-term health...</p>
+                        </div>
+                        <div class="journal-card">
+                            <div class="journal-img"><img src="https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&q=80&w=800" alt="Journal"></div>
+                            <h3>Inside Our Botanical Lab</h3>
+                            <p>A look at how we source and extract our signature ingredients...</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- SHOP PAGE -->
+        <section id="shop" class="page-section section-padding">
+            <div class="container">
+                <div class="section-header">
+                    <h1>The Collection</h1>
+                </div>
+                <div class="shop-layout">
+                    <aside class="shop-sidebar">
+                        <h4>Category</h4>
+                        <ul class="filter-list" id="category-filters">
+                            <li class="active" onclick="filterProducts('category', 'all', this)">All Products</li>
+                            <li onclick="filterProducts('category', 'Cleanser', this)">Cleansers</li>
+                            <li onclick="filterProducts('category', 'Serum', this)">Serums</li>
+                            <li onclick="filterProducts('category', 'Moisturizer', this)">Moisturizers</li>
+                            <li onclick="filterProducts('category', 'Oil', this)">Treatment Oils</li>
+                        </ul>
+                        <h4>Skin Concern</h4>
+                        <ul class="filter-list" id="concern-filters">
+                            <li class="active" onclick="filterProducts('concern', 'all', this)">All Concerns</li>
+                            <li onclick="filterProducts('concern', 'Hydration', this)">Hydration</li>
+                            <li onclick="filterProducts('concern', 'Anti-aging', this)">Anti-aging</li>
+                            <li onclick="filterProducts('concern', 'Brightening', this)">Brightening</li>
+                        </ul>
+                    </aside>
+                    <div class="product-grid" id="shop-grid">
+                        <!-- JS injected -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRODUCT DETAIL PAGE -->
+        <section id="product-detail" class="page-section section-padding">
+            <div class="container" id="product-detail-content">
+                <!-- JS injected -->
+            </div>
+        </section>
+
+        <!-- ABOUT PAGE -->
+        <section id="about" class="page-section">
+            <div class="about-hero">
+                <h1>Made for Mindful Rituals.</h1>
+            </div>
+            <div class="container section-padding">
+                <div class="split-section" style="background: transparent;">
+                    <div class="split-content" style="padding-left: 0;">
+                        <h2>Our Story</h2>
+                        <p>LUMÉA was born from a desire to return to the essentials. In a world of over-complicated routines and harsh chemicals, we sought a path that honored both traditional botanical wisdom and modern dermatological science.</p>
+                        <p>Founded by herbalist Elena Vance and biochemist Dr. Marcus Thorne, LUMÉA represents the perfect synergy between the garden and the laboratory.</p>
+                    </div>
+                    <div class="split-image"><img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&q=80&w=1200" style="height: 100%; width: 100%;"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT PAGE -->
+        <section id="contact" class="page-section section-padding">
+            <div class="container">
+                <div class="product-detail-grid">
+                    <div>
+                        <h1 style="margin-bottom: 20px;">Get in Touch</h1>
+                        <p style="margin-bottom: 40px; color: var(--text-muted);">Have questions about your skin ritual? Our experts are here to help.</p>
+                        <form id="contact-form" onsubmit="handleContact(event)">
+                            <div style="margin-bottom: 20px;">
+                                <input type="text" placeholder="Name" required style="width: 100%; padding: 15px; border: 1px solid var(--border); background: var(--white);">
+                            </div>
+                            <div style="margin-bottom: 20px;">
+                                <input type="email" placeholder="Email" required style="width: 100%; padding: 15px; border: 1px solid var(--border); background: var(--white);">
+                            </div>
+                            <div style="margin-bottom: 20px;">
+                                <textarea placeholder="Message" rows="5" required style="width: 100%; padding: 15px; border: 1px solid var(--border); background: var(--white); font-family: inherit;"></textarea>
+                            </div>
+                            <button type="submit" class="btn">Send Message</button>
+                        </form>
+                    </div>
+                    <div>
+                        <div class="accordion">
+                            <div class="section-header" style="text-align: left; margin-bottom: 30px;">
+                                <h3>Frequently Asked Questions</h3>
+                            </div>
+                            <div class="accordion-item" onclick="toggleAccordion(this)">
+                                <div class="accordion-header">Shipping Policy <span>+</span></div>
+                                <div class="accordion-content">We offer free standard shipping on all orders over $75. International shipping is available to select countries.</div>
+                            </div>
+                            <div class="accordion-item" onclick="toggleAccordion(this)">
+                                <div class="accordion-header">Return Policy <span>+</span></div>
+                                <div class="accordion-content">If you aren't satisfied with your purchase, we offer returns within 30 days of delivery.</div>
+                            </div>
+                            <div class="accordion-item" onclick="toggleAccordion(this)">
+                                <div class="accordion-header">Are your products vegan? <span>+</span></div>
+                                <div class="accordion-content">Yes, all LUMÉA products are 100% vegan and cruelty-free.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">LUMÉA</div>
+                    <p style="color: rgba(255,255,255,0.6); max-width: 300px;">Elevating your daily skincare ritual through the power of botanical science.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a onclick="showPage('shop')">All Products</a></li>
+                        <li><a href="#">Best Sellers</a></li>
+                        <li><a href="#">New Arrivals</a></li>
+                        <li><a href="#">Sets & Kits</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a onclick="showPage('contact')">Contact Us</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Join the Ritual</h4>
+                    <p style="font-size: 14px; color: rgba(255,255,255,0.6);">Subscribe to receive skincare tips and early access to new launches.</p>
+                    <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+                        <input type="email" placeholder="Email Address" required>
+                        <button type="submit">Join</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 LUMÉA SKINCARE. ALL RIGHTS RESERVED.</p>
+                <div style="display: flex; gap: 20px;">
+                    <a href="#">Instagram</a>
+                    <a href="#">TikTok</a>
+                    <a href="#">Pinterest</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Drawer UI -->
+    <div class="cart-overlay" onclick="toggleCart()"></div>
+    <div class="cart-drawer">
+        <div class="cart-header">
+            <h2 class="serif">Your Cart</h2>
+            <button onclick="toggleCart()"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+        </div>
+        <div class="cart-items" id="cart-items-container">
+            <!-- JS Injected -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-subtotal">
+                <span>Subtotal</span>
+                <span id="cart-subtotal-amount">$0.00</span>
+            </div>
+            <button class="btn" style="width: 100%;">Checkout</button>
+            <p style="font-size: 12px; text-align: center; margin-top: 15px; color: var(--text-muted);">Taxes and shipping calculated at checkout.</p>
+        </div>
+    </div>
+
+    <div class="toast" id="toast">Item added to cart</div>
+
+    <script>
+        // --- Product Data ---
+        const products = [
+            { id: 1, name: "Botanical Renewal Serum", price: 68, category: "Serum", concern: "Anti-aging", rating: 4.9, img: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=800", desc: "A potent blend of botanical extracts and niacinamide to rejuvenate and refine." },
+            { id: 2, name: "Cloud Cream Moisturizer", price: 54, category: "Moisturizer", concern: "Hydration", rating: 4.8, img: "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&q=80&w=800", desc: "Weightless hydration that locks in moisture for a dewy, plump finish." },
+            { id: 3, name: "Night Bloom Oil", price: 72, category: "Oil", concern: "Anti-aging", rating: 5.0, img: "https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?auto=format&fit=crop&q=80&w=800", desc: "Overnight recovery oil infused with bakuchiol and rare botanical extracts." },
+            { id: 4, name: "Mineral Glow Cleanser", price: 38, category: "Cleanser", concern: "Brightening", rating: 4.7, img: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&q=80&w=800", desc: "A gentle exfoliating cleanser that reveals your natural radiance." },
+            { id: 5, name: "Hyaluronic Mist", price: 32, category: "Moisturizer", concern: "Hydration", rating: 4.6, img: "https://images.unsplash.com/photo-1598440499115-ff36b074d722?auto=format&fit=crop&q=80&w=800", desc: "Instant refreshment and deep hydration in a single spritz." },
+            { id: 6, name: "Rosehip Repair Mask", price: 48, category: "Serum", concern: "Brightening", rating: 4.9, img: "https://images.unsplash.com/photo-1596755389378-c31d21fd1273?auto=format&fit=crop&q=80&w=800", desc: "Weekly intensive treatment for stressed and dull skin." },
+            { id: 7, name: "Bakuchiol Eye Gel", price: 58, category: "Serum", concern: "Anti-aging", rating: 4.8, img: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=800", desc: "Targeted firming and brightening for the delicate eye area." },
+            { id: 8, name: "Velvet Cleansing Balm", price: 42, category: "Cleanser", concern: "Hydration", rating: 5.0, img: "https://images.unsplash.com/photo-1556228578-8d5112ca911a?auto=format&fit=crop&q=80&w=800", desc: "Dissolves makeup and impurities while nourishing the skin barrier." },
+            { id: 9, name: "Vitamin C Elixir", price: 76, category: "Serum", concern: "Brightening", rating: 4.9, img: "https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&q=80&w=800", desc: "High-concentration antioxidant serum for ultimate luminosity." },
+            { id: 10, name: "Barrier Defense Cream", price: 62, category: "Moisturizer", concern: "Hydration", rating: 4.7, img: "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&q=80&w=800", desc: "Ceramide-rich formula to strengthen and protect sensitive skin." },
+            { id: 11, name: "Calming Oat Toner", price: 34, category: "Cleanser", concern: "Hydration", rating: 4.5, img: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&q=80&w=800", desc: "Soothing prep step to balance pH and calm redness." },
+            { id: 12, name: "Squalane Facial Oil", price: 46, category: "Oil", concern: "Hydration", rating: 4.8, img: "https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?auto=format&fit=crop&q=80&w=800", desc: "Pure, plant-derived squalane for non-greasy moisture." }
+        ];
+
+        // --- State Management ---
+        let cart = [];
+        let currentFilter = { category: 'all', concern: 'all' };
+
+        // --- Core Functions ---
+        function init() {
+            renderProducts('featured-products', products.slice(0, 4));
+            renderProducts('shop-grid', products);
+            updateCartCount();
+        }
+
+        function renderProducts(containerId, productList) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            container.innerHTML = productList.map(product => `
+                <div class="product-card">
+                    <div class="product-image" onclick="viewProduct(${product.id})">
+                        <img src="${product.img}" alt="${product.name}">
+                        <div class="quick-add" onclick="event.stopPropagation(); addToCart(${product.id})">Quick Add — $${product.price}</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-rating">★★★★★</div>
+                        <a class="product-name" onclick="viewProduct(${product.id})">${product.name}</a>
+                        <div class="product-price">$${product.price}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterProducts(type, value, el) {
+            // Update UI active state
+            const parent = el.parentElement;
+            Array.from(parent.children).forEach(li => li.classList.remove('active'));
+            el.classList.add('active');
+
+            // Update state
+            currentFilter[type] = value;
+
+            // Apply filter
+            let filtered = products;
+            if (currentFilter.category !== 'all') {
+                filtered = filtered.filter(p => p.category === currentFilter.category);
+            }
+            if (currentFilter.concern !== 'all') {
+                filtered = filtered.filter(p => p.concern === currentFilter.concern);
+            }
+            
+            renderProducts('shop-grid', filtered);
+        }
+
+        function viewProduct(id) {
+            const product = products.find(p => p.id === id);
+            const detailContainer = document.getElementById('product-detail-content');
+            
+            detailContainer.innerHTML = `
+                <div class="product-detail-grid">
+                    <div class="product-gallery">
+                        <img src="${product.img}" alt="${product.name}" style="width: 100%; height: 700px;">
+                    </div>
+                    <div class="product-main-info">
+                        <div class="product-rating">★★★★★ (48 Reviews)</div>
+                        <h1>${product.name}</h1>
+                        <span class="price">$${product.price}.00</span>
+                        <p class="product-description">${product.desc}</p>
+                        
+                        <div style="margin-bottom: 30px;">
+                            <label style="display: block; font-size: 12px; text-transform: uppercase; margin-bottom: 10px;">Quantity</label>
+                            <div style="display: flex; align-items: center; gap: 20px; border: 1px solid var(--border); width: fit-content; padding: 10px 20px;">
+                                <button onclick="this.nextElementSibling.innerText = Math.max(1, parseInt(this.nextElementSibling.innerText)-1)">-</button>
+                                <span>1</span>
+                                <button onclick="this.previousElementSibling.innerText = parseInt(this.previousElementSibling.innerText)+1">+</button>
+                            </div>
+                        </div>
+
+                        <button class="btn" style="width: 100%; margin-bottom: 15px;" onclick="addToCart(${product.id})">Add to Bag</button>
+                        <button class="btn btn-outline" style="width: 100%;">Buy it Now</button>
+
+                        <div class="accordion">
+                            <div class="accordion-item active" onclick="toggleAccordion(this)">
+                                <div class="accordion-header">Ingredients <span>+</span></div>
+                                <div class="accordion-content">Aqua, Glycerin, Niacinamide, Botanical Extracts, Sodium Hyaluronate, Phenoxyethanol, Ethylhexylglycerin. Purely sourced and concentrated for results.</div>
+                            </div>
+                            <div class="accordion-item" onclick="toggleAccordion(this)">
+                                <div class="accordion-header">How to Use <span>+</span></div>
+                                <div class="accordion-content">Apply 2-3 drops to clean, damp skin morning and night. Follow with your favorite LUMÉA moisturizer for best results.</div>
+                            </div>
+                            <div class="accordion-item" onclick="toggleAccordion(this)">
+                                <div class="accordion-header">Shipping & Returns <span>+</span></div>
+                                <div class="accordion-content">Free shipping on orders over $75. 30-day satisfaction guarantee.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section-padding">
+                    <div class="section-header">
+                        <h2>Complete the Ritual</h2>
+                    </div>
+                    <div class="product-grid">
+                        ${products.slice(4, 8).map(p => `
+                            <div class="product-card">
+                                <div class="product-image" onclick="viewProduct(${p.id})"><img src="${p.img}"></div>
+                                <div class="product-info">
+                                    <a class="product-name">${p.name}</a>
+                                    <div class="product-price">$${p.price}</div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            showPage('product-detail');
+            window.scrollTo(0,0);
+        }
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+            window.scrollTo(0,0);
+        }
+
+        // --- Cart Logic ---
+        function toggleCart() {
+            document.body.classList.toggle('cart-active');
+        }
+
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            const existing = cart.find(item => item.id === id);
+            
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push({ ...product, qty: 1 });
+            }
+            
+            updateCartUI();
+            updateCartCount();
+            showToast();
+            if (!document.body.classList.contains('cart-active')) {
+                // Optional: auto-open cart? Better to just show toast for premium feel.
+            }
+        }
+
+        function updateCartUI() {
+            const container = document.getElementById('cart-items-container');
+            const subtotalEl = document.getElementById('cart-subtotal-amount');
+            
+            if (cart.length === 0) {
+                container.innerHTML = '<p style="text-align: center; margin-top: 50px; color: var(--text-muted);">Your bag is empty.</p>';
+                subtotalEl.innerText = '$0.00';
+                return;
+            }
+
+            let subtotal = 0;
+            container.innerHTML = cart.map(item => {
+                subtotal += item.price * item.qty;
+                return `
+                    <div class="cart-item">
+                        <img src="${item.img}" class="cart-item-img">
+                        <div class="cart-item-info">
+                            <h4>${item.name}</h4>
+                            <div class="cart-item-price">$${item.price}</div>
+                            <div class="cart-item-qty">
+                                <button class="qty-btn" onclick="changeQty(${item.id}, -1)">-</button>
+                                <span>${item.qty}</span>
+                                <button class="qty-btn" onclick="changeQty(${item.id}, 1)">+</button>
+                                <button onclick="removeFromCart(${item.id})" style="margin-left: auto; font-size: 11px; text-decoration: underline; opacity: 0.6;">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            subtotalEl.innerText = `$${subtotal.toFixed(2)}`;
+        }
+
+        function changeQty(id, delta) {
+            const item = cart.find(i => i.id === id);
+            item.qty += delta;
+            if (item.qty < 1) {
+                removeFromCart(id);
+            } else {
+                updateCartUI();
+                updateCartCount();
+            }
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(i => i.id !== id);
+            updateCartUI();
+            updateCartCount();
+        }
+
+        function updateCartCount() {
+            const count = cart.reduce((acc, item) => acc + item.qty, 0);
+            document.getElementById('cart-count').innerText = count;
+        }
+
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // --- Interactions ---
+        function toggleAccordion(el) {
+            el.classList.toggle('active');
+        }
+
+        function handleContact(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerText;
+            btn.innerText = "Sending...";
+            setTimeout(() => {
+                btn.innerText = "Message Sent";
+                e.target.reset();
+                setTimeout(() => btn.innerText = originalText, 3000);
+            }, 1500);
+        }
+
+        function handleNewsletter(e) {
+            e.preventDefault();
+            const input = e.target.querySelector('input');
+            const btn = e.target.querySelector('button');
+            btn.innerText = "Subscribed";
+            input.value = "";
+            setTimeout(() => btn.innerText = "Join", 3000);
+        }
+
+        // Mobile Menu
+        document.querySelector('.mobile-menu-toggle').addEventListener('click', () => {
+            const links = document.querySelector('.nav-links');
+            if (links.style.display === 'flex') {
+                links.style.display = 'none';
+            } else {
+                links.style.display = 'flex';
+                links.style.flexDirection = 'column';
+                links.style.position = 'absolute';
+                links.style.top = '90px';
+                links.style.left = '0';
+                links.style.width = '100%';
+                links.style.background = 'var(--bg-cream)';
+                links.style.padding = '40px';
+                links.style.borderBottom = '1px solid var(--border)';
+            }
+        });
+
+        // Initialize
+        window.onload = init;
+    </script>
+</body>
+</html></html>
